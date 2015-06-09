@@ -1,0 +1,17 @@
+root = exports ? this
+root.foundationRoutes = [
+  "name": "accueil",
+  "url": "/",
+  "path": "app/accueil/index.html"
+  "controller": "AccueilController",
+  animation:
+    enter: 'slideInRight',
+    leave: 'slideOutRight'
+,
+  "name": "dossiers-stage",
+  "url": "/dossiers-stage",
+  "path": "app/dossiers-stage/index.html",
+  animation:
+    enter: 'slideInRight',
+    leave: 'slideOutRight'
+]

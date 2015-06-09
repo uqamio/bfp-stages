@@ -1,0 +1,59 @@
+<div class="grid-block align-center">
+    <div class="small-12 medium-8 large-6 grid-block">
+        <div class="grid-content">
+            <h1>Mes dossiers de stages</h1>
+            <label>
+                <span class="inline-label">
+                    <span class="form-label">
+                        <img zf-iconic="" icon="Magnifying-glass" size="small">
+                    </span>
+                    <input type="text" placeholder="<----- Il fallait que je la plug!!!  :)" ng-model="search">
+                </span>
+            </label>
+
+            <div class="grid-block small-up-2 medium-up-4">
+                <div class="grid-content" ng-repeat="dossier in dossiers | filter:search">
+                    <div class="card" ng-class="{success: dossier==dossierSelectionne}">
+                        <div class="card-divider">
+                            <span ng-click="setDossier(dossier)" zf-open="advancedModal">
+                                {{dossier.nom}}
+                            </span>
+                        </div>
+                        <div class="card-section">
+                            <p>{{dossier.codePermanent}}</p>
+                            <small>{{dossier.programme}}</small>
+                        </div>
+                        <div class="card-section">
+                            <span class="success badge"
+                                  ng-class="{alert: dossier.cote < 2, warning: dossier.cote >= 2 && dossier.cote < 2.7}">
+                                {{dossier.cote}}
+                            </span>
+                            <img zf-iconic icon="flag" size="small" class="iconic-color-warning"
+                                 ng-show="dossier.warning">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div zf-modal="" id="advancedModal" class="collapse">
+    <div class="grid-block vertical">
+        <div class="primary title-bar">
+            <div class="center title">Dossiser de stage</div>
+            <a zf-close class="close-button right">×</a>
+        </div>
+        <div class="grid-content padding" style="padding-top: 1rem;">
+
+            <p> Nom : {{dossierSelectionne.nom}}</p>
+
+            <p>Code permanent {{dossierSelectionne.codePermanent}}</p>
+
+            <p>Programme : {{dossierSelectionne.programme}}</p>
+
+            <a zf-close="" class="button">OK</a>
+            <a zf-close="" class="button">Cancel</a>
+        </div>
+    </div>
+</div>

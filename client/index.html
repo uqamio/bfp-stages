@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="baseApp" ng-cloak>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title>UQAM | SADSI | Gestion des stages</title>
+
+    <meta name='viewport' id="viewPort" name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- bower:css -->
+    <!-- endbower -->
+
+    <!-- injector:css -->
+    <!-- endinjector -->
+
+</head>
+
+<body class="full-height" ng-controller="BaseController">
+<zf-offcanvas class="dark" id="menu" position="left">
+    <a zf-close class="close-button">×</a>
+    <ul class="vertical menu-bar">
+        <li>
+            <a ui-sref="accueil">
+                <img zf-iconic icon="home" size="small">
+                &nbsp;
+            </a>
+        </li>
+        <li ui-sref-active="is-active">
+            <a ui-sref="dossiers-stage">
+                Mes dossier de stage</a>
+        </li>
+    </ul>
+    <ul class="vertical menu-bar">
+        <li class="title">Configuration</li>
+        <li><a href="#">Liste de ressources</a></li>
+        <li><a href="#">Liste E</a></li>
+    </ul>
+</zf-offcanvas>
+
+<div class="grid-frame vertical">
+    <div class="primary title-bar">
+        <div class="left">
+            <a href="#" zf-toggle="menu">|||</a></div>
+        <div class="center title"><a ui-sref="accueil">Gestion des stages</a></div>
+        <div class="right show-for-medium">
+            <span>Notifications</span>
+            <span class="secondary badge" zf-toggle="panelNameNotification">{{notification}}</span>
+        </div>
+        <div class="right show-for-small-only">
+            <span class="secondary badge" zf-toggle="panelNameNotification">{{notification}}</span>
+        </div>
+    </div>
+
+    <div ui-view class="grid-block">
+    </div>
+
+    <div zf-panel id="panelNameNotification" position="right">
+        <div>
+            <a zf-close class="close-button">×</a>
+        </div>
+
+        <ul>
+            <li>Note 1</li>
+            <li>Note 2</li>
+            <li>Note 3</li>
+            <li>Note 4</li>
+            <li>Note 5</li>
+        </ul>
+
+    </div>
+</div>
+
+<!-- bower:js -->
+<!-- endbower -->
+
+<!-- injector:js -->
+<!-- endinjector -->
+<script>
+    //Charger livereload seulement en local
+    if (window.location.hostname == 'localhost') {
+        document.write('<script src="http://'
+        + window.location.hostname
+        + ':35729/livereload.js?snipver=1" type="text/javascript"><\/script>');
+    }
+</script>
+
+</body>
+
+</html>

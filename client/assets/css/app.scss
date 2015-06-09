@@ -1,0 +1,18 @@
+@charset "utf-8";
+@import "settings";
+
+$menubar-background: transparent;
+$menubar-background-hover: smartscale(#666, 7%);
+$menubar-background-active: $menubar-background-hover;
+$offcanvas-shadow: 3px 0 10px rgba(white, 0.25);
+
+@import "foundation";
+
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.full-height {
+  min-height: 100vh;
+}

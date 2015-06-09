@@ -1,0 +1,20 @@
+{
+  "name": "tfa",
+  "version": "0.1.0",
+  "authors": [
+    "Gabriel Com <com.gabriel@uqam.ca>"
+  ],
+  "description": "Projet de test d'admission en francais",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "client/bower_components"
+  ],
+  "dependencies": {
+    "foundation-apps": "~1.1.0"
+  }
+}
