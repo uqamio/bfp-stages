@@ -15,3 +15,4 @@ npm-debug.log
 README.md
 certificats/certificats.sh
 dist
+node_modules

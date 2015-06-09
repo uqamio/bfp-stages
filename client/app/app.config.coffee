@@ -16,6 +16,12 @@ baseApp.config ($urlRouterProvider, $locationProvider, $stateProvider) ->
       enter: 'slideInRight',
       leave: 'slideOutRight'
 
+
+  $stateProvider.state 'banque-savoirs',
+    url: '/banque-savoirs',
+    controller: 'BanqueController'
+    templateUrl: 'app/banque/index.html',
+
   $urlRouterProvider.otherwise '/'
   $locationProvider.html5Mode({
     enabled: false,

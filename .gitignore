@@ -35,3 +35,4 @@ server/logs/*.log
 certificats/
 !certificats/certificats.sh
 dist
+node_modules
