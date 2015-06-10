@@ -1,13 +1,31 @@
-<div class="grid-block align-center">
-    <div class="small-12 medium-9 grid-content">
+<div class="small-12 medium-9 vertical grid-block">
+    <div class="grid-content">
         <h1>
             Établissement - {{ etablissement.nom }}
         </h1>
 
+        <h2>
+            Coordonnées
+        </h2>
+
         <p>
-            {{etablissement}}
+            Courriel : <a href="mailto:{{etablissement.courriel}}">
+            {{etablissement.courriel}}
+        </a>
+            <br/>
+            {{etablissement.coordonnees}}
         </p>
 
-        <a class="button float-right" ui-sref="banque-savoirs">Retour</a>
+
+        <div ng-show="etablissement.type == 'Établissement d\'enseignement'">
+            <h2>
+                Établissement d'enseignement
+            </h2>
+
+            Code éthnique : {{etablissement.codeEthnique}}
+        </div>
+    </div>
+    <div class="grid-content small-12 text-right">
+        <a class="button" ui-sref="banque-savoirs">Retour</a>
     </div>
 </div>

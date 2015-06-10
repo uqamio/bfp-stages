@@ -10,9 +10,10 @@
         <section class="block-list">
             <header>Établissements</header>
             <ul>
-                <li  ng-repeat="etablissement in etablissements | filter:searchEtablissement | orderBy: 'type'" class="slideInRight with-chevron">
+                <li ng-repeat="etablissement in etablissements | filter:searchEtablissement | orderBy: ['type', 'nom']"
+                    class="fadeIn fadeOut with-chevron">
                     <a ui-sref="etablissement({ id: etablissement.id } )">
-                        {{etablissement.nom}}
+                        {{etablissement.type}} - {{etablissement.nom}}
                     </a>
                 </li>
             </ul>
