@@ -3,19 +3,19 @@
         <h1>Banque de savoirs</h1>
 
         <section class="block-list">
-            <header>Liste de la banque de savoir</header>
+            <header>Liste des personnes ressources</header>
             <ul>
-                <li ng-repeat="liste in listes" class="with-chevron">
-                    <a ui-sref="banque-personnes-ressources">
-                        {{liste.nom}}
+                <li ng-repeat="personne in personnes">
+                    <a ng-click="setPersonne(personne)" zf-open="animatedModal">{{personne.nom}},
+                        {{personne.prenom}}
                         -
-                        {{liste.description}}
+                        {{personne.courriel}}
                     </a>
-
                 </li>
             </ul>
         </section>
 
+        <a ui-sref="banque-savoirs" class=" button float-right">Retour à la liste</a>
     </div>
 </div>
 
@@ -25,6 +25,7 @@
             <span class="left">
                 <img zf-iconic="" icon="person" size="small" class="iconic-color-secondary">
             </span>
+
             <div class="center title">{{currentPersonne.prenom}} {{currentPersonne.nom}}</div>
             <span class="right"><a zf-close class="close-button">x</a></span>
         </div>

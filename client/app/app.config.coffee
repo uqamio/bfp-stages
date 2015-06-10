@@ -20,7 +20,12 @@ baseApp.config ($urlRouterProvider, $locationProvider, $stateProvider) ->
   $stateProvider.state 'banque-savoirs',
     url: '/banque-savoirs',
     controller: 'BanqueController'
-    templateUrl: 'app/banque/index.html',
+    templateUrl: 'app/banque/index.html'
+
+  $stateProvider.state 'banque-personnes-ressources',
+    url: '/banque-personnes-ressources',
+    controller: 'BanqueController'
+    templateUrl: 'app/banque/personnes.html',
 
   $urlRouterProvider.otherwise '/'
   $locationProvider.html5Mode({

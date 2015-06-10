@@ -2,6 +2,7 @@ baseApp = angular.module 'baseApp'
 
 BanqueController = ($scope, BanqueSavoir, FoundationApi) ->
   $scope.personnes = BanqueSavoir.getPersonneRessources();
+  $scope.listes = BanqueSavoir.getListes();
 
   $scope.setPersonne = (personne) ->
     $scope.currentPersonne = personne
