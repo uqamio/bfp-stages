@@ -27,7 +27,7 @@ DossierController = ($scope) ->
       cote: 1.45
     },
     {
-      nom: 'Jasque Cartier',
+      nom: 'Jacques Cartier',
       programme: 'Titanic',
       codePermanent: 'SOSI11000111',
       warning: true,

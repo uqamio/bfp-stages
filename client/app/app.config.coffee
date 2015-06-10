@@ -8,26 +8,11 @@ baseApp.config ($urlRouterProvider, $locationProvider, $stateProvider) ->
       enter: 'fadein',
       leave: 'slideOutRight'
 
-  $stateProvider.state 'dossiers-stage',
-    url: '/dossiers-stage',
-    templateUrl: 'app/dossiers-stage/index.html',
-    controller: 'DossierController'
-    animation:
-      enter: 'slideInRight',
-      leave: 'slideOutRight'
+  $stateProvider.state 'introuvable',
+    url: '/introuvable',
+    templateUrl: 'app/404/index.html'
 
-
-  $stateProvider.state 'banque-savoirs',
-    url: '/banque-savoirs',
-    controller: 'BanqueController'
-    templateUrl: 'app/banque/index.html'
-
-  $stateProvider.state 'banque-personnes-ressources',
-    url: '/banque-personnes-ressources',
-    controller: 'BanqueController'
-    templateUrl: 'app/banque/personnes.html',
-
-  $urlRouterProvider.otherwise '/'
+  $urlRouterProvider.otherwise '/introuvable'
   $locationProvider.html5Mode({
     enabled: false,
     requireBase: false

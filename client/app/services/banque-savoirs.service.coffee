@@ -10,9 +10,35 @@ baseApp.factory 'BanqueSavoir', ['$http', ($http) ->
         {nom: 'Germain', prenom: 'Caroline', courriel: 'germain.caroline@uqam.ca'},
       ]
 
-    getListes: ->
+    getEtablissement: (id) ->
+      etablissement for etablissement in this.getEtablissements() when etablissement.id is id
+      etablissement
+
+    getEtablissements: ->
       [
-        {id: 1, nom: 'Personnes ressources', description: 'La liste des personnes ressources'},
-        {id: 2, nom: 'Commissions scolaires', description: 'La liste des commissions scolaires pour l\'ensemble des '},
+        {
+          id: 1,
+          nom: 'CSDM',
+          description: 'Desc.',
+          type: 'Commission scolaire'
+        },
+        {
+          id: 2,
+          nom: 'Calixa-Lavallée',
+          description: 'Desc.',
+          type: 'Établissement d\'enseignement'
+        },
+        {
+          id: 3,
+          nom: 'Marie-Victorin',
+          description: 'Desc.',
+          type: 'Commission scolaire'
+        },
+        {
+          id: 4,
+          nom: 'CGI',
+          description: 'Desc.',
+          type: 'Entreprise'
+        }
       ]
 ]

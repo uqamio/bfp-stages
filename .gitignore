@@ -36,3 +36,4 @@ certificats/
 !certificats/certificats.sh
 dist
 node_modules
+documentation/.~lock.*

@@ -1,17 +1,19 @@
 <div class="grid-block align-center">
     <div class="small-12 medium-9 grid-content">
         <h1>Banque de savoirs</h1>
-
+  <span class="inline-label">
+                <span class="form-label">
+                    <img zf-iconic="" icon="magnifying-glass" size="small">
+                </span>
+                <input type="text" ng-model="searchEtablissement" placeholder="Recherche dans les établissements"/>
+            </span>
         <section class="block-list">
-            <header>Liste de la banque de savoir</header>
+            <header>Établissements</header>
             <ul>
-                <li ng-repeat="liste in listes" class="with-chevron">
-                    <a ui-sref="banque-personnes-ressources">
-                        {{liste.nom}}
-                        -
-                        {{liste.description}}
+                <li  ng-repeat="etablissement in etablissements | filter:searchEtablissement | orderBy: 'type'" class="slideInRight with-chevron">
+                    <a ui-sref="etablissement({ id: etablissement.id } )">
+                        {{etablissement.nom}}
                     </a>
-
                 </li>
             </ul>
         </section>
@@ -25,6 +27,7 @@
             <span class="left">
                 <img zf-iconic="" icon="person" size="small" class="iconic-color-secondary">
             </span>
+
             <div class="center title">{{currentPersonne.prenom}} {{currentPersonne.nom}}</div>
             <span class="right"><a zf-close class="close-button">x</a></span>
         </div>
