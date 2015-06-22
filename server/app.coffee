@@ -11,6 +11,7 @@ jwt = require('jsonwebtoken')
 
 fondation = require('./fondation')
 journalisation = fondation.journalisation
+banqueSavoir = require './banque-savoir'
 
 
 port = process.env.PORT || 2015
@@ -67,6 +68,12 @@ app.get('/tmptoken',
     token = jwt.sign(utilisateur, secretClient, {expiresInMinutes: 60 * 5});
     res.redirect('/#/token/' + token)
 )
+
+#App routing
+app.get '/api/banque-savoir/etablissements', banqueSavoir.etablissementMiddlewares.getEtablissements
+app.get '/api/banque-savoir/etablissements/:id', banqueSavoir.etablissementMiddlewares.getEtablissement
+app.delete '/api/banque-savoir/etablissements/:id', banqueSavoir.etablissementMiddlewares.supprimerEtablissement
+app.put '/api/banque-savoir/etablissements', banqueSavoir.etablissementMiddlewares.creerEtablissementEnseignement
 
 server = app.listen(port,
   ()->

@@ -7,7 +7,7 @@ module.exports = {
       '<%= repertoires.client %>**/*.scss'
     ],
     tasks: [
-      'sass:dist'
+      'sass'
     ]
   },
   html: {

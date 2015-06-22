@@ -38,7 +38,7 @@ module.exports =
       ['clean',
        'coffee'
        'concurrent:deployDev',
-       'sass:dist',
+       'sass',
        'copy',
        'injector',
        'wiredep']
@@ -46,7 +46,7 @@ module.exports =
     grunt.registerTask 'deployProd',
       ['clean',
        'coffee'
-       'sass:dist',
+       'sass',
        'copy',
        'injector',
        'wiredep']
@@ -56,7 +56,7 @@ module.exports =
         if target == 'dev'
           grunt.task.run([
             'build',
-            'sass:dist',
+            'sass',
             'executerDev'])
         else
           console.warn('Aucune cible de trouvé dans le démarage de grunt pour : «%s»', target)

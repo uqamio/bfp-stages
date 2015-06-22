@@ -15,9 +15,10 @@
     <!-- injector:css -->
     <!-- endinjector -->
 
+
 </head>
 
-<body class="full-height" ng-controller="BaseController">
+<body class="full-height" ng-controller="BaseController" ng-keypress="onKeyPress($event)">
 <zf-offcanvas class="dark" id="menu" position="left">
     <a zf-close class="close-button">×</a>
     <ul class="vertical menu-bar">
@@ -65,7 +66,6 @@
             <li>Note 2</li>
             <li>Note 3</li>
             <li>Note 4</li>
-            <li>Note 5</li>
         </ul>
 
     </div>

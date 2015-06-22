@@ -1,6 +1,6 @@
 module.exports =
 {
-  dist: {
+  foundation: {
     options: {
       style: 'expanded',
       trace: false,

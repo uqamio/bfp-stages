@@ -1,8 +1,20 @@
 baseApp = angular.module 'baseApp'
 
-EtablissementController = ($scope, $stateParams, BanqueSavoir, FoundationApi) ->
-  $scope.id = 'Id : ' + $stateParams.id
-  $scope.etablissement = BanqueSavoir.getEtablissement parseInt $stateParams.id
+EtablissementController = ($scope, $state, $stateParams, BanqueSavoir, FoundationApi) ->
+  #BanqueSavoir.getEtablissements((etablissements))
+  getEtablissementPromise = BanqueSavoir.getEtablissement $stateParams.id
 
-EtablissementController.$inject = ['$scope', '$stateParams', 'BanqueSavoir', 'FoundationApi']
+  getEtablissementPromise.success (data, status) ->
+    $scope.etablissement = data
+  getEtablissementPromise.error (data, status) ->
+
+  $scope.supprimer = (id) ->
+    promise = BanqueSavoir.supprimerEtablissement id
+    promise.success (data, status) ->
+      console.log data
+      $state.go('banque-savoirs')
+    promise.error (data, status) ->
+      console.warn data
+
+EtablissementController.$inject = ['$scope', '$state', '$stateParams', 'BanqueSavoir', 'FoundationApi']
 baseApp.controller('EtablissementController', EtablissementController)

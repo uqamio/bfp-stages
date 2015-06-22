@@ -1,31 +1,107 @@
 <div class="small-12 medium-9 vertical grid-block">
     <div class="grid-content">
         <h1>
-            Établissement - {{ etablissement.nom }}
+            Établissement
         </h1>
 
-        <h2>
-            Coordonnées
-        </h2>
+        <input type="text" placeholder="Nom de l'établissement" ng-model="etablissement.nom">
 
-        <p>
-            Courriel : <a href="mailto:{{etablissement.courriel}}">
-            {{etablissement.courriel}}
-        </a>
-            <br/>
-            {{etablissement.coordonnees}}
-        </p>
+        <div class="grid-block">
+            <div class="grid-content small-12 medium-6">
+                <label>
+                    Courriel
+                    <input type="email" ng-model="etablissement.courriel" placeholder="Courriel">
+                </label>
+            </div>
+            <div class="grid-content small-12 medium-6">
+                <label>
+                    Coordonnées
+                    <input type="text" ng-model="etablissement.coordonnees" placeholder="Coordonnées">
+                </label>
+            </div>
+        </div>
 
+        <h2>Répondants</h2>
+
+        <div class="grid-block">
+            <div class="grid-content small-12 medium-6">
+                <ul>
+                    <li ng-repeat="repondant in etablissement.repondants">
+                        {{repondant.nom}},
+                        <a href="mailto:{{repondant.courriel}}">{{repondant.courriel}}</a>,
+                        {{repondant.telephone}}.
+                    </li>
+                </ul>
+                <small ng-show="etablissement.repondants.lenght == 0">Il n'y a pas de répondant.</small>
+                {{etablissement.repondants.lenght}}
+            </div>
+        </div>
 
         <div ng-show="etablissement.type == 'Établissement d\'enseignement'">
             <h2>
                 Établissement d'enseignement
             </h2>
 
-            Code éthnique : {{etablissement.codeEthnique}}
+            <div class="grid-block">
+                <div class="grid-content small-12 medium-6">
+                    <label>
+                        Commission scolaire</label>
+                    <select>
+                        <option ng-repeat="etablissement in etablissements" value="etablissement.id">
+                            {{etablissement.nom}}
+                        </option>
+                    </select>
+
+
+                </div>
+                <div class="grid-content small-12 medium-6">
+                    <label>
+                        Commission scolaire</label>
+                    <select ng-model="etablissement.codeEthnique" convert-to-number>
+                        <option value="CN">Chine</option>
+                        <option value="US">États-Unis</option>
+                        <option value="EU">Europe</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <h2>Notes</h2>
+
+        <div class="grid-block">
+            <div class="grid-content small-12">
+                <label>
+                    Ajouter une note
+                    <span class="inline-label">
+                        <span>
+                            <select>
+                                <option>Générale</option>
+                                <option>Important</option>
+                                <option>TODO</option>
+                            </select>
+                        </span>
+                        <input type="search" placeholder="Ajouter une note" ng-model="newNote">
+                        <span>
+                             <button type="button" class="button" ng-click="ajouterNote()">+</button>
+                        </span>
+
+                    </span>
+                </label>
+
+                <div ng-repeat="note in etablissement.notes">
+                    [{{note.auteur}}@{{note.date | cmdate:'dd-MM-yyyy hh:mm:ss' }}] - {{note.texte}}
+                </div>
+
+            </div>
+        </div>
+        <div class="grid-block small-12 text-right">
+            <div class="grid-content small-12">
+                <button class="button warning float-left" ng-click="supprimer(etablissement._id)">Supprimer</button>
+                <button class="button secondary">Sauvegarder</button>
+                <a class="button" ui-sref="banque-savoirs">Retour</a>
+            </div>
         </div>
     </div>
-    <div class="grid-content small-12 text-right">
-        <a class="button" ui-sref="banque-savoirs">Retour</a>
-    </div>
+
 </div>

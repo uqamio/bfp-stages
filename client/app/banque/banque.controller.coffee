@@ -1,14 +1,29 @@
 baseApp = angular.module 'baseApp'
 
-BanqueController = ($scope, BanqueSavoir, FoundationApi) ->
-  $scope.personnes = BanqueSavoir.getPersonneRessources();
-  $scope.etablissements = BanqueSavoir.getEtablissements();
+BanqueController = ($scope,  $state, BanqueSavoir, FoundationApi) ->
+  getEtablissements = ()->
+    etablissementPromise = BanqueSavoir.getEtablissements()
+    etablissementPromise.success((data, status) ->
+      $scope.etablissements = data
+    )
+    etablissementPromise.error((data, status) ->
+      console.warn arguments
+    )
 
-  $scope.setPersonne = (personne) ->
-    $scope.currentPersonne = personne
-  $scope.test = () ->
-    FoundationApi.publish 'animatedModal', 'close'
+  getEtablissements()
 
-BanqueController.$inject = ['$scope', 'BanqueSavoir', 'FoundationApi']
+  $scope.newEtablissement = {}
+
+  $scope.creer = () ->
+    p = BanqueSavoir.creerEtablissement($scope.newEtablissement)
+    p.success (data, status)->
+      $state.go('etablissement', { id: data._id })
+      FoundationApi.publish 'etablissementModal', 'close'
+    p.error (data, status)->
+
+
+
+
+BanqueController.$inject = ['$scope', '$state', 'BanqueSavoir', 'FoundationApi']
 
 baseApp.controller('BanqueController', BanqueController)

@@ -4,20 +4,32 @@ baseApp.factory 'BanqueSavoir', ['$http', ($http) ->
   new class BanqueSavoir
     constructor: ->
 
-    getPersonneRessources: ->
-      [
-        {nom: 'Com', prenom: 'Gabriel', courriel: 'com.gabriel@uqam.ca'},
-        {nom: 'Germain', prenom: 'Caroline', courriel: 'germain.caroline@uqam.ca'},
-      ]
+    creerEtablissement: (newEtablissement)->
+      $http ( {
+        method: 'PUT',
+        url: '/api/banque-savoir/etablissements',
+        data: newEtablissement
+      })
 
     getEtablissement: (id) ->
-      etablissement = null
-      angular.forEach this.getEtablissements(), (value) ->
-        if value.id is id
-          etablissement = value
-      etablissement
+      $http ( {
+        method: 'GET',
+        url: '/api/banque-savoir/etablissements/' + id
+      })
+
+    supprimerEtablissement: (id) ->
+      $http ( {
+        method: 'DELETE',
+        url: '/api/banque-savoir/etablissements/' + id
+      })
 
     getEtablissements: ->
+      $http ( {
+        method: 'GET',
+        url: '/api/banque-savoir/etablissements'
+      })
+
+    getMockEtablissements: ->
       [
         {
           id: 1,
@@ -25,7 +37,9 @@ baseApp.factory 'BanqueSavoir', ['$http', ($http) ->
           description: 'Desc.',
           courriel: 'csdm@csdm.ca',
           coordonnees: '1234, Rue Ici. Montréal Québec. Canada H0H 0H0',
-          type: 'Commission scolaire'
+          type: 'Commission scolaire',
+          notes: [],
+          test: 'toto',
         },
         {
           id: 2,
@@ -34,11 +48,21 @@ baseApp.factory 'BanqueSavoir', ['$http', ($http) ->
           courriel: 'calix@csdm.ca',
           coordonnees: '4589, Rue Labat. Kuujjuaq Québec. Canada J5L 8I9 0H0',
           type: 'Établissement d\'enseignement',
-          codeEthnique: 'cn',
+          test: 'privé',
+          codeEthnique: 'CN',
           commissionScolaire: 1,
-          langueEnseignement: ['fr','en'],
-          effectifScolaire:'son effectif',
-          typeFormation: 'secondaire'
+          langueEnseignement: ['fr', 'en'],
+          effectifScolaire: 'son effectif',
+          typeFormation: 'secondaire',
+          repondants: [
+            {nom: 'Le Directeur', telephone: '514-555-6666, 1234', courriel: 'abc.dir@uqam.ca'},
+            {nom: 'Le Prof', telephone: '514-666-7777, 4567', courriel: 'abc.prof@uqam.ca'}
+          ],
+          notes: [
+            {id: 1, auteur: 'Gabriel Com', texte: 'Le texte de la note 1', date: new Date()},
+            {id: 2, auteur: 'Gabriel Com', texte: 'Le texte de la note 2', date: new Date()},
+            {id: 3, auteur: 'Gabriel Com', texte: 'Le texte de la note 3', date: new Date()},
+          ]
         },
         {
           id: 3,
@@ -46,7 +70,9 @@ baseApp.factory 'BanqueSavoir', ['$http', ($http) ->
           description: 'Desc.',
           courriel: 'marie-vic@longueuil.ca',
           coordonnees: '34, Boulevard Lévesque. Québec Québec. Canada J20 6K4 0H0',
-          type: 'Commission scolaire'
+          type: 'Commission scolaire',
+          test: 'public',
+          notes: []
         },
         {
           id: 4,
@@ -55,7 +81,9 @@ baseApp.factory 'BanqueSavoir', ['$http', ($http) ->
           courriel: 'pot-de-vin@cgi.ca',
           coordonnees: '3456, Avenue Bienvenue. Kuujjuaq Québec. Canada H0H 0H0',
           type: 'Entreprise',
-          siegeSocial : 'Montréal'
+          test: 'privé',
+          siegeSocial: 'Montréal',
+          notes: []
         }
       ]
 ]

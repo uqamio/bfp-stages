@@ -1,58 +1,66 @@
 <div class="grid-block align-center">
     <div class="small-12 medium-9 grid-content">
         <h1>Banque de savoirs</h1>
-  <span class="inline-label">
+            <span class="inline-label">
                 <span class="form-label">
                     <img zf-iconic="" icon="magnifying-glass" size="small">
                 </span>
                 <input type="text" ng-model="searchEtablissement" placeholder="Recherche dans les établissements"/>
             </span>
         <section class="block-list">
-            <header>Établissements</header>
+            <header>Établissements
+
+            </header>
             <ul>
                 <li ng-repeat="etablissement in etablissements | filter:searchEtablissement | orderBy: ['type', 'nom']"
-                    class="fadeIn fadeOut with-chevron">
-                    <a ui-sref="etablissement({ id: etablissement.id } )">
-                        {{etablissement.type}} - {{etablissement.nom}}
+                    class="fadeIn with-chevron">
+                    <a ui-sref="etablissement({ id: etablissement._id } )">
+                        {{etablissement.nom}} - {{etablissement.directeur}}
                     </a>
                 </li>
             </ul>
         </section>
-
+        <div class="float-right">
+            <a href="#" zf-open="etablissementModal">Ajouter un établissement</a>
+        </div>
     </div>
 </div>
 
-<div zf-modal="" id="animatedModal">
+<div zf-modal="" id="etablissementModal">
     <div class="grid-block vertical">
         <div class="primary title-bar">
             <span class="left">
-                <img zf-iconic="" icon="person" size="small" class="iconic-color-secondary">
             </span>
 
-            <div class="center title">{{currentPersonne.prenom}} {{currentPersonne.nom}}</div>
-            <span class="right"><a zf-close class="close-button">x</a></span>
+            <div class="center title">Créer un établissement</div>
+            <span class="right">
+                <a zf-close class="close-button">x</a>
+            </span>
         </div>
         <div class="grid-content padding" style="padding-top: 1rem;">
             <div class="grid-block">
-                <div class="small-12 medium-6 grid-content">
+                <div class="small-12 grid-content">
                     <label>
-                        Prénom
-                        <input type="text" placeholder="Le prénom du contact" ng-model="currentPersonne.prenom">
+                        Nom de l'établissement
+                        <input type="text" placeholder="Nom" ng-model="newEtablissement.nom">
                     </label>
                 </div>
-                <div class="small-12 medium-6 grid-content">
+                <div class="small-12  grid-content">
+                    <label>Type d'établissement</label>
                     <label>
-                        Nom
-                        <input type="text" placeholder="Le nom du contact" ng-model="currentPersonne.nom">
+                        <input type="radio" value="enseignement" ng-model="newEtablissement.type">
+                        Établissement d'enseignement
                     </label>
+                    <label>
+                        <input type="radio" value="entreprise" ng-model="newEtablissement.type">
+                        Entreprise
+                    </label>
+                </div>
+                <div class="small-12 grid-content text-right">
+                    <button class="button" type="button" ng-click="creer()">Créer</button>
+                    <button zf-close class="button" type="button">Cancel</button>
                 </div>
             </div>
-            <a class="button" ng-click="test()">OK</a>
-            <a zf-close class="button">Cancel</a>
-            <button zf-close class="warning button float-right">
-                <img zf-iconic="" icon="circle-x" size="small" class="iconic-color-alert">
-                Supprimer
-            </button>
         </div>
     </div>
 </div>
