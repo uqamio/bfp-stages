@@ -15,7 +15,7 @@
                 <li ng-repeat="etablissement in etablissements | filter:searchEtablissement | orderBy: ['type', 'nom']"
                     class="fadeIn with-chevron">
                     <a ui-sref="etablissement({ id: etablissement._id } )">
-                        {{etablissement.nom}} - {{etablissement.directeur}}
+                        {{etablissement.nom}} - {{etablissement.__t}}
                     </a>
                 </li>
             </ul>
@@ -48,15 +48,15 @@
                 <div class="small-12  grid-content">
                     <label>Type d'établissement</label>
                     <label>
-                        <input type="radio" value="enseignement" ng-model="newEtablissement.type">
+                        <input type="radio" value="Enseignement" ng-model="newEtablissement.type">
                         Établissement d'enseignement
                     </label>
                     <label>
-                        <input type="radio" value="entreprise" ng-model="newEtablissement.type">
-                        Entreprise
+                        <input type="radio" value="CommissionScolaire" ng-model="newEtablissement.type">
+                        Commission scolaire
                     </label>
                 </div>
-                <div class="small-12 grid-content text-right">
+                <div class="small-12 grid-content text-right" style="padding: 1rem">
                     <button class="button" type="button" ng-click="creer()">Créer</button>
                     <button zf-close class="button" type="button">Cancel</button>
                 </div>

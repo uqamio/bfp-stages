@@ -17,6 +17,13 @@ baseApp.factory 'BanqueSavoir', ['$http', ($http) ->
         url: '/api/banque-savoir/etablissements/' + id
       })
 
+    modifierEtablissement: (etablissement) ->
+      $http ( {
+        method: 'POST',
+        url: '/api/banque-savoir/etablissements/',
+        data: etablissement
+      })
+
     supprimerEtablissement: (id) ->
       $http ( {
         method: 'DELETE',

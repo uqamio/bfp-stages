@@ -74,6 +74,7 @@ app.get '/api/banque-savoir/etablissements', banqueSavoir.etablissementMiddlewar
 app.get '/api/banque-savoir/etablissements/:id', banqueSavoir.etablissementMiddlewares.getEtablissement
 app.delete '/api/banque-savoir/etablissements/:id', banqueSavoir.etablissementMiddlewares.supprimerEtablissement
 app.put '/api/banque-savoir/etablissements', banqueSavoir.etablissementMiddlewares.creerEtablissementEnseignement
+app.post '/api/banque-savoir/etablissements', banqueSavoir.etablissementMiddlewares.modifierEtablissementEnseignement
 
 server = app.listen(port,
   ()->

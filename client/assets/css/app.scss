@@ -16,23 +16,7 @@ $offcanvas-shadow: 3px 0 10px rgba(white, 0.25);
   min-height: 100vh;
 }
 
-$table-background: #f8f8f8;
-table {
-  width: 100%;
-  th {
-    text-align: left;
-    background-color: lightness($table-background);
-  }
-  th, td {
-    padding: 5px;
-  }
-
-  tbody tr{
-    :hover {
-    }
-  }
-
-  tbody tr:nth-child(2n) {
-    background-color: $table-background;
-  }
+.note-todo-done{
+  text-decoration: line-through;
+  color: #d3d3d3;
 }

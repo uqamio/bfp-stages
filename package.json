@@ -13,6 +13,7 @@
     "jsonwebtoken": "^5.0.x",
     "mongodb": "^2.0.x",
     "mongoose": "^4.0.5",
+    "mongoose-schema-extend": "^0.1.7",
     "passport": "^0.2.x",
     "passport-local": "^1.0.x",
     "passport-saml": "^0.9.x",

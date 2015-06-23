@@ -75,13 +75,13 @@
                     Ajouter une note
                     <span class="inline-label">
                         <span>
-                            <select>
-                                <option>Générale</option>
-                                <option>Important</option>
-                                <option>TODO</option>
+                            <select ng-model="newNote.type">
+                                <option value="general">Générale</option>
+                                <option value="important">Important</option>
+                                <option value="todo">TODO</option>
                             </select>
                         </span>
-                        <input type="search" placeholder="Ajouter une note" ng-model="newNote">
+                        <input type="text" placeholder="Ajouter une note" ng-model="newNote.texte" ng-enter="ajouterNote()">
                         <span>
                              <button type="button" class="button" ng-click="ajouterNote()">+</button>
                         </span>
@@ -89,19 +89,30 @@
                     </span>
                 </label>
 
-                <div ng-repeat="note in etablissement.notes">
-                    [{{note.auteur}}@{{note.date | cmdate:'dd-MM-yyyy hh:mm:ss' }}] - {{note.texte}}
+                <div ng-class="{ 'note-todo-done': note.done}" ng-repeat="note in etablissement.notes | orderBy : '-date'">
+                    [ {{note.type}} {{note.auteur}}@{{note.date | cmdate:'dd-MM-yyyy hh:mm:ss' }}] - {{note.texte}}
+                     <span ng-show="note.type=='todo'">
+                        <a class="" ng-click="note.done = !note.done">Done</a>
+                    </span>
                 </div>
+
 
             </div>
         </div>
+        <hr/>
         <div class="grid-block small-12 text-right">
             <div class="grid-content small-12">
-                <button class="button warning float-left" ng-click="supprimer(etablissement._id)">Supprimer</button>
-                <button class="button secondary">Sauvegarder</button>
+                <button class="button warning float-left" zf-open="confirmerDelete">Supprimer</button>
+                <button class="button secondary" ng-click="modifier()">Sauvegarder</button>
                 <a class="button" ui-sref="banque-savoirs">Retour</a>
             </div>
         </div>
     </div>
 
+</div>
+
+<div zf-modal id="confirmerDelete">
+    <h4>Vraiment supprimer «{{etablissement.nom}}» ?</h4>
+    <a class="alert button" ng-click="supprimer(etablissement._id)">Oui</a>
+    <a zf-close class="secondary button">Non</a>
 </div>

@@ -11,39 +11,51 @@ db.on 'error', console.error.bind console, 'connection error:'
 db.once 'open', () ->
   console.log "mongodb is opened"
 
-RepondantSchema = new Schema(
-  {
-    name: String,
-    prenom: String,
-    courriel: String
-  }
-);
+RepondantSchema = new Schema {
+  name: String,
+  prenom: String,
+  courriel: String
+}
 
-AbstractEtablissementSchema = () ->
+
+NoteSchema = new Schema {
+  auteur: String,
+  date: Date,
+  texte: String,
+  type: String,
+  done: Boolean
+}
+
+
+BaseEtablissementSchema = () ->
   Schema.apply this, arguments
   this.add({
     nom: String,
-    courriel: String,
-    coordonnees: String,
-    creeLe: {type: Date, default: Date.nom},
-    modifieLe: {type: Date, default: Date.nom},
-    notes: [String],
+    courriel: {type: String, default: ''},
+    coordonnees: {type: String, default: ''},
+    creeLe: {type: Date, default: Date.now},
+    modifieLe: {type: Date, default: Date.now},
+    notes: [NoteSchema],
     regionAdministrative: Schema.Types.ObjectId,
     repondants: [RepondantSchema]
   })
 
-util.inherits(AbstractEtablissementSchema, Schema);
+util.inherits(BaseEtablissementSchema, Schema);
 
 
-EtablissementSchema = new AbstractEtablissementSchema();
+EtablissementSchema = new BaseEtablissementSchema();
 
-EnseignementSchema = new AbstractEtablissementSchema {
+EnseignementSchema = new BaseEtablissementSchema
+EnseignementSchema.add {
   directeur: String
 }
 
-CommissionScolaireSchema = new AbstractEtablissementSchema {
-  regionAdministrative: String
+CommissionScolaireSchema = new BaseEtablissementSchema
+CommissionScolaireSchema.add {
+  regionAdministrative:
+    type: String, default: ''
 }
+
 
 Etablissement = mongoose.model 'Etablissement', EtablissementSchema
 Enseignement = Etablissement.discriminator 'Enseignement', EnseignementSchema
@@ -54,11 +66,16 @@ internal =
     Enseignement: Enseignement,
     CommissionScolaire: CommissionScolaire,
   creerEtablissementEnseignement: (etablissement, callback) ->
-    Enseignement.create etablissement, (err, entablissementEnseignement) ->
+    console.log etablissement
+    fn = (err, raw) ->
       if (err)
         callback err
       else
-        callback null, entablissementEnseignement
+        callback null, raw
+
+    switch etablissement.type
+      when 'CommissionScolaire' then CommissionScolaire.create etablissement, fn
+      when 'Enseignement' then Enseignement.create etablissement, fn
   getEtablissement: (id, callback) ->
     Etablissement.findById id,
       (err, etablissement) ->
@@ -66,18 +83,29 @@ internal =
           callback null, etablissement
         else
           callback err
+  getEtablissements: (callback) ->
+    Etablissement.find {},
+      (err, enseignements) ->
+        if (!err)
+          callback null, enseignements
+        else
+          callback err
+  modifierEtablissementEnseignement: (etablissement, callback) ->
+    console.log etablissement
+    Etablissement.update {
+        _id: etablissement._id
+      },
+      {$set: etablissement},
+      (err, raw) ->
+        if (!err)
+          callback null, raw
+        else
+          callback err
   supprimerEtablissement: (id, callback) ->
     Etablissement.remove {_id: id},
       (err) ->
         if (!err)
           callback null
-        else
-          callback err
-  getEtablissements: (callback) ->
-    Enseignement.find {},
-      (err, enseignements) ->
-        if (!err)
-          callback null, enseignements
         else
           callback err
 

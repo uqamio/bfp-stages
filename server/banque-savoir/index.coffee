@@ -11,14 +11,14 @@ module.exports =
           else
             res.send 'NONNNN!!!!'
     modifierEtablissementEnseignement: (req, res) ->
-      id = req.params.id
-      etablissement = req.params.etablissement
-      etablissements.modifierEtablissementEnseignement id, etablissement,
-        (err, etablissementEndeignement) ->
+      console.log 'index.js', req.body
+      etablissement = req.body
+      etablissements.modifierEtablissementEnseignement etablissement,
+        (err, raw) ->
           if(!err)
-            res.json etablissementEndeignement
+            res.json raw
           else
-            res.send 'NONNNN!!!!'
+            res.send err
     supprimerEtablissement: (req, res) ->
       id = req.params.id
       etablissements.supprimerEtablissement id,
@@ -40,3 +40,5 @@ module.exports =
           res.json etablissements
         else
           res.send 'NONNNN!!!!'
+
+
