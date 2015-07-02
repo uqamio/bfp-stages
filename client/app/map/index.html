@@ -1,0 +1,18 @@
+<div  class="grid-content">
+    <button class="button" ng-click="ouvrirMap()">Open modal</button>
+    <div zf-modal="" id="advancedModal"  overlay-close="false" class="large collapse ">
+        <div class="grid-block vertical">
+            <div class="title-bar">
+                <div class="center title">Distances</div>
+                <span zf-close="" class="right"><a zf-close class="close-button ng-scope">×</a></span>
+            </div>
+            <div id="map" class="grid-content padding" style="padding: 1px;">
+                <ui-gmap-google-map center='map.center' zoom='map.zoom' control="map.mapControl">
+
+                </ui-gmap-google-map>
+            </div>
+        </div>
+    </div>
+
+
+</div>

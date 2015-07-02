@@ -53,7 +53,7 @@ EnseignementSchema.add {
 CommissionScolaireSchema = new BaseEtablissementSchema
 CommissionScolaireSchema.add {
   regionAdministrative:
-    type: String, default: ''
+    type: Schema.Types.ObjectId, default: null
 }
 
 

@@ -5,7 +5,8 @@ app = angular.module 'baseApp', ['ui.router',
                                  'ngAnimate',
                                  'foundation',
                                  'foundation.dynamicRouting',
-                                 'foundation.dynamicRouting.animations']
+                                 'foundation.dynamicRouting.animations',
+                                 'uiGmapgoogle-maps']
 
 
 BaseController = ($scope, FoundationApi)->

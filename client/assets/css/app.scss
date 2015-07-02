@@ -11,6 +11,7 @@ $offcanvas-shadow: 3px 0 10px rgba(white, 0.25);
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+html, body { height: 100%; }
 
 .full-height {
   min-height: 100vh;
@@ -20,3 +21,5 @@ $offcanvas-shadow: 3px 0 10px rgba(white, 0.25);
   text-decoration: line-through;
   color: #d3d3d3;
 }
+
+.angular-google-map-container { height: 600px; }
